@@ -3,7 +3,7 @@ import { filter } from 'rxjs/operators';
 
 export const createRxjsMiddleware: (actions: TypeRedux.IActions<any, any, any>) => TypeRedux.IMiddleware = (actions) => (store) => {
   const allActs = [];
-  const action$ = new Observable();
+  const action$ = new Observable<any>();
   store.context.action$ = action$;
 
   for (const key in actions) {
