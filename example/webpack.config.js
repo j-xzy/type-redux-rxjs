@@ -1,9 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './example/src/index.ts',
   mode: 'development',
   devtool: 'source-map',
   devServer: {
@@ -21,8 +20,8 @@ module.exports = {
           {
             loader: 'tslint-loader',
             options: {
-              tsConfigFile: path.join(__dirname, 'tsconfig.json'),
-              configFile: path.join(__dirname, '/tslint.json')
+              tsConfigFile: 'tsconfig.json',
+              configFile: 'tslint.json'
             }
           }
         ]
@@ -30,9 +29,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './example/src/index.html',
       title: 'example'
     })
   ]

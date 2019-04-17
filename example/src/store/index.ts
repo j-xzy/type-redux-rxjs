@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from 'type-redux';
-import { createRxjsMiddleware } from '../../../../src';
+import { createRxjsMiddleware } from '../../../src';
 import * as actions from './actions';
 import * as mutations from './mutations';
 
