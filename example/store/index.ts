@@ -6,7 +6,7 @@ import * as mutations from './mutations';
 const initialState = {
   count: 0,
   repUrl: '',
-  loading: false
+  loading: ''
 };
 
 const reducers = { mutations, actions };

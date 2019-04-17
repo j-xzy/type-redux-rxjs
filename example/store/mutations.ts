@@ -24,6 +24,6 @@ export function repUrl(getState: IGetState, url: string) {
   return { ...getState(), repUrl: url };
 }
 
-export function loading(getState: IGetState, flag: boolean) {
-  return { ...getState(), loading: flag };
+export function loading(getState: IGetState, text: string) {
+  return { ...getState(), loading: text };
 }

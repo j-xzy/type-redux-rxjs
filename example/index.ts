@@ -2,15 +2,11 @@ import { store } from './store';
 
 const $ = (selector: string) => document.querySelector(selector);
 $('#count')!.innerHTML = store.getState().count + '';
-$('#loading')!.innerHTML = 'done';
+$('#loading')!.innerHTML = store.getState().loading;
 
 store.subscribe(() => {
   const state = store.getState();
-  if (state.loading) {
-    $('#loading')!.innerHTML = 'loading...';
-  } else {
-    $('#loading')!.innerHTML = 'done';
-  }
+  $('#loading')!.innerHTML = state.loading;
   $('#count')!.innerHTML = state.count + '';
 });
 
@@ -27,5 +23,9 @@ $('#set')!.addEventListener('click', () => {
 });
 
 $('#server')!.addEventListener('click', () => {
-  store.dispatch('fetchNewestCount', 123);
+  store.dispatch('fetchCount', 123);
+});
+
+$('#cancel')!.addEventListener('click', () => {
+  store.dispatch('cancel');
 });
