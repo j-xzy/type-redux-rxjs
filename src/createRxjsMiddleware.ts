@@ -1,7 +1,9 @@
 import { merge, Observable, Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
-export const createRxjsMiddleware: (actions: TypeRedux.IActions<any, any, any>) => TypeRedux.IMiddleware = (actions) => (store) => {
+type ICreateRxjsMiddleware = (actions: TypeRedux.IActions<any, any, any>) => TypeRedux.IMiddleware;
+
+export const createRxjsMiddleware: ICreateRxjsMiddleware = (actions) => (store) => {
   const allActs = [];
   const action$ = new Observable<any>();
   store.context.action$ = action$;
@@ -9,7 +11,8 @@ export const createRxjsMiddleware: (actions: TypeRedux.IActions<any, any, any>) 
   for (const key in actions) {
     if (actions.hasOwnProperty(key)) {
       const curAct$ = action$.pipe(
-        filter((action: any) => action.type === key)
+        filter((act: any) => act.type === key),
+        map((act) => act.payload)
       );
       store.context.curAction$ = curAct$;
       allActs.push(actions[key](store.context, undefined));

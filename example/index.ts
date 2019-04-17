@@ -27,5 +27,5 @@ $('#set')!.addEventListener('click', () => {
 });
 
 $('#server')!.addEventListener('click', () => {
-  store.dispatch('fetchNewestCount');
+  store.dispatch('fetchNewestCount', 123);
 });

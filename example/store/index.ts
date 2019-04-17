@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from 'type-redux';
-import { createRxjsMiddleware } from '../../../src';
+import { createRxjsMiddleware } from '../../src';
 import * as actions from './actions';
 import * as mutations from './mutations';
 
@@ -15,4 +15,4 @@ export const store = createStore(initialState, reducers, applyMiddleware(createR
 
 type IState = typeof initialState;
 export type IGetState = () => IState;
-export type ICtx = TypeRedux.IContext<IState, typeof reducers['mutations'], typeof reducers['actions']>;
+export type ICtx<T> = TypeRedux.IRxContext<IState, typeof reducers['mutations'], typeof reducers['actions'], T>;
