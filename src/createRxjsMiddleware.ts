@@ -7,6 +7,10 @@ export const createRxjsMiddleware: ICreateRxjsMiddleware = (actions) => (store) 
   const allActs = [];
   const action$ = new Observable<any>();
   store.context.action$ = action$;
+  store.context.createAction$ = (type: any) => action$.pipe(
+    filter((act: any) => act.type === type),
+    map((act) => act.payload)
+  );
 
   for (const key in actions) {
     if (actions.hasOwnProperty(key)) {

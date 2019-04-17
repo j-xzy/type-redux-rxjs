@@ -10,15 +10,13 @@ export function fetchCount(ctx: ICtx<number>, _d: number): any {
       () => ajax.getJSON('https://api.github.com/users/whj1995/repos')
         .pipe(
           tap((result: any) => ctx.commit('set', result.length)),
-          takeUntil(ctx.action$.pipe(
-            filter((t) => t.type === 'cancel')
-          ))
+          takeUntil(ctx.createAction$('cancel').pipe(tap((x) => console.log(x))))
         )
     )
   );
 }
 
-export function cancel(ctx: ICtx<any>, a: string) {
+export function cancel(ctx: ICtx<any>, _d: string) {
   return ctx.curAction$.pipe(
     tap(() => ctx.commit('loading', 'canel'))
   );

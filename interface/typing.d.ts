@@ -1,5 +1,5 @@
 /// <reference types="type-redux" />
-import { Observable } from "rxjs";
+import { Observable, Observer } from "rxjs";
 
 declare global {
   namespace TypeRedux {
@@ -13,11 +13,7 @@ declare global {
       }
     }>
 
-    // interface IAction<S, M extends IMutations<S>, A extends IActions<S, M, A>> {
-    //   (ctx: IRxContext<S, M, A, any>, payload?: any): any;
-    //  }
-
-    type ICreateAction$<A extends IActions<any, any, A>> = <K extends keyof A>(type: K, payload?: Parameters<A[K]>[1]) => { type: K, payload?: Parameters<A[K]>[1] };
+    type ICreateAction$<A extends IActions<any, any, A>> = <K extends keyof A>(type: K) => Observable<Parameters<A[K]>[1]>;
 
     interface IRxContext<S, M extends IMutations<S>, A extends IActions<S, M, A>, T> extends IContext<S, M, A> {
       curAction$: Observable<T>;

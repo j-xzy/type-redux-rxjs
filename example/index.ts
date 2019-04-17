@@ -27,5 +27,5 @@ $('#server')!.addEventListener('click', () => {
 });
 
 $('#cancel')!.addEventListener('click', () => {
-  store.dispatch('cancel');
+  store.dispatch('cancel', 'sss');
 });
