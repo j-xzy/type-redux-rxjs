@@ -1,20 +1,22 @@
 // tslint:disable: no-console
 import { ajax } from 'rxjs/ajax';
-import { mergeMap, takeUntil, tap, throttleTime } from 'rxjs/operators';
+import { mergeMap, takeUntil, tap, throttleTime, take, switchMap, takeWhile, map, switchMapTo } from 'rxjs/operators';
 import { ICtx } from './index';
 
 export function fetchCount(ctx: ICtx<number>, _d: number): any {
-  return ctx.curAction$.pipe(
-    throttleTime(5000),
+  const a$: any = ctx.curAction$.pipe(
+    take(1),
     tap(() => ctx.commit('loading', 'fetching...')),
-    mergeMap(
-      () => ajax.getJSON('https://api.github.com/users/whj1995/repos')
+    switchMapTo(
+      ajax.getJSON('https://api.github.com/users/whj1995/repos')
         .pipe(
           tap((result: any) => ctx.dispatch('sett', result.length)),
+          switchMap(() => a$),
           takeUntil(ctx.createAction$('cancel').pipe(tap((x) => console.log(x))))
         )
     )
   );
+  return a$;
 }
 
 export function sett(ctx: ICtx<number>, _: number) {
