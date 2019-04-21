@@ -32,6 +32,7 @@ export const createRxjsMiddleware: ICreateRxjsMiddleware = (actions) => (store) 
   const keys = Object.keys(actions);
   store.context.dispatch = store.dispatch = async (type: any, payload: any) => {
     if (keys.includes(type)) {
+      store.context.payload = payload;
       sub$.next({ type, payload });
     } else {
       await dispatch(type, payload);

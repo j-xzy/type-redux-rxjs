@@ -14,9 +14,12 @@ export function fetchCount(ctx: ICtx<number>, _d: number): any {
     take(1),
     tap(() => ctx.commit('loading', 'fetching...')),
     switchMapTo(
-      ajax.getJSON<string>('http://localhost:3000/f')
+      ajax.getJSON<string>('https://api.github.com/users/whj1995/repos')
         .pipe(
-          tap((result: any) => ctx.dispatch('sett', result.length)),
+          tap((result: any) => {
+            console.log('fetchCount', ctx.payload);
+            ctx.dispatch('sett', result.length);
+          }),
           takeUntil(cancel$)
         )
     ),
@@ -29,7 +32,10 @@ export function fetchCount(ctx: ICtx<number>, _d: number): any {
 }
 
 export function sett(ctx: ICtx<number>, _: number) {
-  return ctx.curAction$.pipe(tap((d) => ctx.commit('set', d)));
+  return ctx.curAction$.pipe(tap((d) => {
+    console.log('sett', ctx.payload);
+    ctx.commit('set', d);
+  }));
 }
 
 export function cancel(ctx: ICtx<any>, _d: string) {

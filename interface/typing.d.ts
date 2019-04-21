@@ -19,12 +19,14 @@ declare global {
       curAction$: Observable<T>;
       action$: Observable<IAction$<A>>
       createAction$: ICreateAction$<A>;
+      payload: T;
     }
 
     interface IContext<S, M extends IMutations<S>, A extends IActions<S, M, A>> {
       curAction$: Observable<any>;
       action$: Observable<any>;
       createAction$: ICreateAction$<A>;
+      payload: any;
     }
   }
 }
