@@ -5,6 +5,7 @@
     "outDir": "./lib",
     "moduleResolution": "node",
     "strict": true,
+    "declaration": true,
     "noImplicitAny": true,
     "module": "esnext",
     "target": "esnext",
