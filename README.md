@@ -1,6 +1,8 @@
 # type-redux的Rxjs中间件
 
 [![npm version](https://badge.fury.io/js/type-redux-rxjs.svg)](https://badge.fury.io/js/type-redux-rxjs)
+[![Build Status](https://www.travis-ci.org/whj1995/type-redux-rxjs.svg?branch=master)](https://www.travis-ci.org/whj1995/type-redux-rxjs)
+[![Coverage Status](https://coveralls.io/repos/github/whj1995/type-redux-rxjs/badge.svg?branch=master)](https://coveralls.io/github/whj1995/type-redux-rxjs?branch=master)
 
 灵感来自 [redux-observable](https://github.com/redux-observable/redux-observable) , 但为type-redux定制。
 

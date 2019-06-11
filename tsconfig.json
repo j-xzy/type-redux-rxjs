@@ -7,7 +7,7 @@
     "strict": true,
     "declaration": true,
     "noImplicitAny": true,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "esnext",
     "strictBindCallApply": true,
     "lib": [

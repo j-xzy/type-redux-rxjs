@@ -1,6 +1,6 @@
 {
   "name": "type-redux-rxjs",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "./lib/index.js",
   "repository": "git@github.com:whj1995/type-redux-rxjs.git",
   "author": "whj1995 <wu38607@live.com>",
@@ -10,7 +10,9 @@
     "build": "yarn clean && tsc -p ./tsconfig.json",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "fix-lint": "tslint -c tslint.json -p tsconfig.json --fix",
-    "example": "webpack-dev-server --config ./example/webpack.config.js --open"
+    "example": "webpack-dev-server --config ./example/webpack.config.js --open",
+    "test": "jest __test__",
+    "coveralls": "jest __test__ --coverage --coverageReporters=text-lcov | coveralls"
   },
   "files": [
     "lib",
@@ -24,12 +26,14 @@
     "rxjs": "^6.0.0"
   },
   "devDependencies": {
-    "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "@types/jest": "^24.0.13",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "coveralls": "^3.0.4",
+    "jest": "^24.8.0",
     "typescript": "^3.4.3",
-    "type-redux": "^1.0.4",
+    "type-redux": "^2.0.2",
     "rxjs": "^6.4.0",
     "tslint": "^5.15.0",
     "tslint-loader": "^3.6.0",

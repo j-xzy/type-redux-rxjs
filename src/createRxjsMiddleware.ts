@@ -12,15 +12,14 @@ export const createRxjsMiddleware: ICreateRxjsMiddleware = (actions) => (store) 
     map((act) => act.payload)
   );
 
+  // tslint:disable-next-line: forin
   for (const key in actions) {
-    if (actions.hasOwnProperty(key)) {
-      const curAct$ = action$.pipe(
-        filter((act: any) => act.type === key),
-        map((act) => act.payload)
-      );
-      store.context.curAction$ = curAct$;
-      allActs.push(actions[key](store.context, undefined));
-    }
+    const curAct$ = action$.pipe(
+      filter((act: any) => act.type === key),
+      map((act) => act.payload)
+    );
+    store.context.curAction$ = curAct$;
+    allActs.push(actions[key](store.context, undefined));
   }
 
   const mergeOb$ = merge(...allActs);

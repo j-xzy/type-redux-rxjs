@@ -5,7 +5,6 @@ import { catchError, switchMap, switchMapTo, take, takeUntil, tap } from 'rxjs/o
 import { ICtx } from './index';
 
 export function fetchCount(ctx: ICtx<number>, _d: number): any {
-
   const cancel$ = merge(ctx.createAction$('cancel'), interval(5000)).pipe(
     switchMapTo(throwError('error'))
   );
