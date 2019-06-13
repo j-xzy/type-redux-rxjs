@@ -10,12 +10,12 @@ export function fetchCount(ctx: ICtx<number>, _d: number): any {
   );
 
   const act$: Observable<any> = ctx.curAction$.pipe(
-    take(1),
     tap(() => ctx.commit('loading', 'fetching...')),
     switchMapTo(
       ajax.getJSON<string>('https://api.github.com/users/whj1995/repos')
         .pipe(
           tap((result: any) => {
+            console.log(typeof result);
             ctx.dispatch('sett', result.length);
           }),
           takeUntil(cancel$)
@@ -25,7 +25,6 @@ export function fetchCount(ctx: ICtx<number>, _d: number): any {
     switchMap(() => act$),
     catchError(() => act$)
   );
-
   return act$;
 }
 
