@@ -15,7 +15,6 @@ export function fetchCount(ctx: ICtx<number>, _d: number): any {
       ajax.getJSON<string>('https://api.github.com/users/whj1995/repos')
         .pipe(
           tap((result: any) => {
-            console.log(typeof result);
             ctx.dispatch('sett', result.length);
           }),
           takeUntil(cancel$)

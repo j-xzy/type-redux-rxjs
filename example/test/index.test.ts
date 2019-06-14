@@ -1,15 +1,11 @@
-import * as Mock from 'mockjs';
 import { applyMiddleware, createStore } from 'type-redux';
 import { createRxjsMiddleware } from 'type-redux-rxjs';
 import * as actions from '../store/actions';
 import * as mutations from '../store/mutations';
 
-(window as any).setTimeout = (callback: any) => {
-  callback();
-};
+jest.mock('rxjs/ajax');
 
 it('', async () => {
-  Mock.mock('https://api.github.com/users/whj1995/repos', []);
 
   const initialState = {
     count: 0,
@@ -24,4 +20,6 @@ it('', async () => {
   expect(store.getState().count).toBe(0);
 
   await store.dispatch('fetchCount');
+
+  expect(store.getState().count).toBe(3);
 });
